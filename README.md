@@ -18,12 +18,11 @@ If you are running this programme with python 3.8 you may not be able to complet
 #### Installing Dependencies
 To perform an analysis Gene-B Phylo requires some dependencies to be installed in the python version you are using:
 
-1. BioPython (https://biopython.org/) 
+1. [**BioPython**](https://biopython.org/) 
 
-2. ete3 (http://etetoolkit.org/)
-[Jaime Huerta-Cepas, François Serra and Peer Bork. "ETE 3: Reconstruction, analysis and visualization of phylogenomic data."  Mol Biol Evol (2016) doi:10.1093/molbev/msw046]
+2. [**ete3**](http://etetoolkit.org/) - In [Mol Biol Evol](Jaime Huerta-Cepas, François Serra and Peer Bork. "ETE 3: Reconstruction, analysis and visualization of phylogenomic data."  Mol Biol Evol (2016) doi:10.1093/molbev/msw046)
 
-2. pandas (https://pandas.pydata.org/)
+3. [**pandas**](https://pandas.pydata.org/)
 
 Users can refer to the installation notes provided with these packages for more detailed instructions.
 
@@ -33,18 +32,18 @@ Users can refer to the installation notes provided with these packages for more 
 *If you do not give any file, Gene-B Phylo will show the "help" option. The programme needs you to give a file that does no exist in order to create Gene-B_Phylo_settings.txt.
 
 2. This settings.txt file is a text file with 7 lines, ordered in a specific manner:
-- Specie_Name -> The Reference_Specie without any added words. If Reference_Specie = S_cerevisiae_proteins, Specie_Name = S_cerevisiae
+- **Specie_Name** -> The Reference_Specie without any added words. If Reference_Specie = S_cerevisiae_proteins, Specie_Name = S_cerevisiae
 
-- Reference_Specie -> The name of the specie you are interested in, as it is named in the OrthoFinder files.
+- **Reference_Specie** -> The name of the specie you are interested in, as it is named in the OrthoFinder files.
 *It is essential though, that all the other species have the same "added" word: s_cerevisiae_proteins, s_paradoxus_proteins...
 
-- OrthoFinder_path -> Here you have to write the path to the OrthoFinder results folder in wich you have those files you are interested in analyse. To run OrthoEvolution it is necessary to use directly the Results folder created by OrthoFinder.
+- **OrthoFinder_path** -> Here you have to write the path to the OrthoFinder results folder in wich you have those files you are interested in analyse. To run OrthoEvolution it is necessary to use directly the Results folder created by OrthoFinder.
 
-- Proteins_fasta -> All the proteins used by OrthoFinder of the Reference Specie. Here you have to write the path to the .fa file of the reference specie.
+- **Proteins_fasta** -> All the proteins used by OrthoFinder of the Reference Specie. Here you have to write the path to the .fa file of the reference specie.
 
-- Output -> You can name the output files in order to now the information within them. In a section below you can see how the output files are named using this.
+- **Output** -> You can name the output files in order to now the information within them. In a section below you can see how the output files are named using this.
 
-- Support -> You will accept those duplication events above this number
+- **Support** -> You will accept those duplication events above this number
 
 *In the Duplication.tsv, Support = Proportion of expected species for which both copies of the duplicated gene are present.
 
