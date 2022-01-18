@@ -70,7 +70,7 @@ For additional information about the OrthoFinder output files used in this analy
 
 #To Run Gene-B Phylo on the Example Data type
 
-`python3 Gene-B_Phylo1.1.py OrthoEvolution_settings.txt`
+`python3 Gene-B_Phylo1.1.py Gene-B_Phylo_settings.txt`
 
 
 ## What Gene-B Phylo provides
