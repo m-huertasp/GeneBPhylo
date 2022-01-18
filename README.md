@@ -21,7 +21,7 @@ To perform an analysis Gene-B Phylo requires some dependencies to be installed i
 
 1. [**BioPython**](https://biopython.org/) 
 
-2. [**ete3**](http://etetoolkit.org/) - In [Mol_Biol_Evol](Jaime Huerta-Cepas, François Serra and Peer Bork. "ETE 3: Reconstruction, analysis and visualization of phylogenomic data."  Mol Biol Evol (2016) doi:10.1093/molbev/msw046)
+2. [**ete3**](http://etetoolkit.org/) - In [Jaime Huerta-Cepas, François Serra and Peer Bork. "ETE 3: Reconstruction, analysis and visualization of phylogenomic data."  Mol Biol Evol (2016) doi:10.1093/molbev/msw046](https://academic.oup.com/mbe/article/33/6/1635/2579822) 
 
 3. [**pandas**](https://pandas.pydata.org/)
 
