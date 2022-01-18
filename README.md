@@ -1,10 +1,11 @@
 # Gene-B Phylo — Working with OrthoFinder Output to analyse duplication and de novo events made automatic!
 
 
-## What does Gene-B Phylo do?
+## What does Gene-B_Phylo do?
 Gene-B Phylo is a platform that enables for fast and accurate analysis of OrthoFinder results. It infers the number of **duplicated** and **de novo** proteins as well as the **duplication events** and **de novo events** from a few output files from OrthoFinder. It allows you to perform a normalized analysis (events/branch length).
 
 References:
+
 [Emms, D.M. and Kelly, S. **(2015)** OrthoFinder: solving fundamental biases in whole genome comparisons dramatically improves orthogroup inference accuracy. **Genome Biology** 16:157](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0721-2)
 
 [Emms, D.M. and Kelly, S. **(2019)** OrthoFinder:Phylogenetic orthology inference for comparative genomics. **Genome Biology** 20:238](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1832-y) 
