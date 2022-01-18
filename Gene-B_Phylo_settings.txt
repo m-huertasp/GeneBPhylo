@@ -1,0 +1,7 @@
+If you are not sure about how to use this settings.txt file: please read the README.md
+Specie_Name:
+Reference_Specie:
+OrthoFinder_path:
+Reference_Specie_fasta_path:
+Output:
+Support:
