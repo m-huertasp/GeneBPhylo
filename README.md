@@ -1,4 +1,4 @@
-#GeneBPhylo — Working with OrthoFinder Output to analyse duplication and de novo events made automatic!
+# GeneBPhylo — Working with OrthoFinder Output to analyse duplication and de novo events made automatic!
 
 
 ## What does GeneBPhylo do?
