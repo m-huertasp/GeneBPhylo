@@ -73,15 +73,15 @@ def orthogroups_todict (DataFrame, Species):
     return Gene_Orthogroup
 
 
-print('Gene-B_Phylo1.1')
+print('GeneBPhylo')
 if (len(sys.argv) != 2) or (sys.argv[1] == '-h'):
     print('USAGE:')
-    print('Run Gene-B_Phylo1.1.py from OrthoFinder Outputs directories ordered in a settings file.')
-    print('This programme requires, then, a Gene-B_Phylo_settings.txt file to work.')
+    print('Run GeneBPhylo.py from OrthoFinder Outputs directories ordered in a settings file.')
+    print('This programme requires, then, a GeneBPhylo_settings.txt file to work.')
     print('If this file is not found it will be created.')
-    print('In order to do so you will need to give the name of a file which does not exist to Gene-B_Phylo.')
+    print('In order to do so you will need to give the name of a file which does not exist to GeneBPhylo.')
     print('As:')
-    print('python3.7 Gene-B_Phylo1.1.py <text file>')
+    print('python3.7 GeneBPhylo.py <text file>')
     print('------------------------------------------------------------------------------')
     print('This programme works with python version 3.7')
     print('Please check that you have ete3, pandas and Biopython installed.')
@@ -94,8 +94,8 @@ if (len(sys.argv) != 2) or (sys.argv[1] == '-h'):
     
 else:    
     ### First we need to get the information from a "Settings_File". There we have all the paths of all the files we are going to need.
-    print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Starting ', 'Gene-B_Phylo1.1')
-    print('Cheking required Gene-B_Phylo_settings.txt file exists') 
+    print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Starting ', 'GeneBPhylo')
+    print('Cheking required GeneBPhylo_settings.txt file exists') 
     File = sys.argv[1]
     File_paths = []
     if path.isfile(File) == True:
