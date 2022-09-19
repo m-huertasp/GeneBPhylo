@@ -76,12 +76,12 @@ def orthogroups_todict (DataFrame, Species):
 print('OrthoEvolution1.0')
 if (len(sys.argv) != 2) or (sys.argv[1] == '-h'):
     print('USAGE:')
-    print('Run OrthoEvolution1.0.py from OrthoFinder Outputs directories ordered in a settings file.')
+    print('Run GeneBPhylo_v1.py from OrthoFinder Outputs directories ordered in a settings file.')
     print('This programme requires, then, a OrthoEvolution_settings.txt file to work.')
     print('If this file is not found it will be created.')
-    print('In order to do so you will need to give the name of a file which does not exist to OrthoEvolution.')
+    print('In order to do so you will need to give the name of a file which does not exist to GeneBPhylo.')
     print('As:')
-    print('python3.7 OrthoEvolution1.0.py <text file>')
+    print('python3.7 GeneBPhylo_v1.py <text file>')
     print('------------------------------------------------------------------------------')
     print('This programme works with python version 3.7')
     print('Please check that you have ete3, pandas and Biopython installed.')
@@ -94,8 +94,8 @@ if (len(sys.argv) != 2) or (sys.argv[1] == '-h'):
     
 else:    
     ### First we need to get the information from a "Settings_File". There we have all the paths of all the files we are going to need.
-    print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Starting ', 'OrthoEvolution1.0')
-    print('Cheking required OrthoEvolution_settings.txt file exists') 
+    print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Starting ', 'GeneBPhylo')
+    print('Cheking required GeneBPhylo_settings.txt file exists') 
     File = sys.argv[1]
     File_paths = []
     if path.isfile(File) == True:
@@ -446,7 +446,7 @@ else:
     else:
         Configurations = ['If you are not sure about how to use this settings.txt file: please read the README.md','Specie_Name:','Reference_Specie:','OrthoFinder_path:','Reference_Specie_fasta_path:','Output:','Support:']
         
-        with open ('OrthoEvolution_settings.txt','w') as file:
+        with open ('OGeneBPhylo_settings.txt','w') as file:
             file.writelines("%s\n" % i for i in Configurations)
         print('Settings file was not found')
-        print('OrthoEvolution_settings.txt file created, needs to be filled')
+        print('GeneBPhylo_settings.txt file created, needs to be filled')
