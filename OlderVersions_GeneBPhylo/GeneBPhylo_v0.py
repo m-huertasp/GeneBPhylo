@@ -82,10 +82,10 @@ def orthogroups_todict (DataFrame, Species):
 print(sys.argv[0])
 if (len(sys.argv) != 2) or (sys.argv[1] == '-h'):
     print('USAGE:')
-    print('Run OrthoEvolution.py from OrthoFinder Outputs directories ordered in a settings file')
+    print('Run GeneBPhylo_v0.py from OrthoFinder Outputs directories ordered in a settings file')
     print('This programme requires, then, a settings.txt file to work')
     print('If this file is not found it will be created')
-    print('For the settings file to be created you will need to use a random file which does not exist in your OrthoEvolution run')
+    print('For the settings file to be created you will need to use a random file which does not exist in your GeneBPhylo run')
     print('More information is to be found in the README.md file')
     print('This programme works with python version 3.7')
     print('----------------------------------------------------------------------------------------------------')
