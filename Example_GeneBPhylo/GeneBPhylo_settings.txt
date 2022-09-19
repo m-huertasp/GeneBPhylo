@@ -1,7 +1,7 @@
 If you are not sure about how to use this settings.txt file: please read the README.md
 Specie_Name:s_cerevisiae
 Reference_Specie:s_cerevisiae_proteins
-OrthoFinder_path:/home/mhuertas/Gene-B_Phylo/Example_Gene-B_Phylo/Example_Dataset
-Reference_Specie_fasta_path:/home/mhuertas/Gene-B_Phylo/Example_Gene-B_Phylo/Example_Dataset/s_cerevisiae_proteins.fa
+OrthoFinder_path:./GeneBPhylo/Example_GeneBPhylo/Example_Dataset
+Reference_Specie_fasta_path:./GeneBPhylo/Example_GeneBPhylo/Example_Dataset/s_cerevisiae_proteins.fa
 Output:s_cerevisiae_Example
 Support:0.5
