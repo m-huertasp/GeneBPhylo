@@ -1,8 +1,8 @@
-# Gene-B Phylo — Working with OrthoFinder Output to analyse duplication and de novo events made automatic!
+#GeneBPhylo — Working with OrthoFinder Output to analyse duplication and de novo events made automatic!
 
 
-## What does Gene-B_Phylo do?
-Gene-B Phylo is a platform that enables for fast and accurate analysis of OrthoFinder results. It infers the number of **duplicated** and **de novo** proteins as well as the **duplication events** and **de novo events** from a few output files from OrthoFinder. It allows you to perform a normalized analysis (events/branch length).
+## What does GeneBPhylo do?
+GeneBPhylo is a platform that enables for fast and accurate analysis of OrthoFinder results. It infers the number of **duplicated** and **de novo** proteins as well as the **duplication events** and **de novo events** from a few output files from OrthoFinder. It allows you to perform a normalized analysis (events/branch length).
 
 References:
 
@@ -10,14 +10,14 @@ References:
 
 [Emms, D.M. and Kelly, S. **(2019)** OrthoFinder:Phylogenetic orthology inference for comparative genomics. **Genome Biology** 20:238](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1832-y) 
 
-### Gene-B Phylo in python
-In order to run Gene-B Phylo you will need a specific python version - python 3.7
+### GeneBPhylo in python
+In order to run GeneBPhylo you will need a specific python version - python 3.7
 If you are running this programme with python 3.8 you may not be able to complete the analysis.
 
 - Python 3.7 (https://www.python.org/)
 
 #### Installing Dependencies
-To perform an analysis Gene-B Phylo requires some dependencies to be installed in the python version you are using:
+To perform an analysis GeneBPhylo requires some dependencies to be installed in the python version you are using:
 
 1. [**BioPython**](https://biopython.org/) 
 
@@ -27,10 +27,10 @@ To perform an analysis Gene-B Phylo requires some dependencies to be installed i
 
 Users can refer to the installation notes provided with these packages for more detailed instructions.
 
-## Running Gene-B Phylo
-1. You will use a file containing the following paths needed. If that file is not in the folder, it will be created as Gene-B_Phylo_settings.txt. 
+## Running GeneBPhylo
+1. You will use a file containing the following paths needed. If that file is not in the folder, it will be created as GeneBPhylo_settings.txt. 
 
-*If you do not give any file, Gene-B Phylo will show the "help" option. The programme needs you to give a file that does no exist in order to create Gene-B_Phylo_settings.txt.
+*If you do not give any file, GeneBPhylo will show the "help" option. The programme needs you to give a file that does no exist in order to create GeneBPhylo_settings.txt.
 
 2. This settings.txt file is a text file with 7 lines, ordered in a specific manner:
 - **Specie_Name** -> The Reference_Specie without any added words. If Reference_Specie = S_cerevisiae_proteins, Specie_Name = S_cerevisiae
@@ -48,7 +48,7 @@ Users can refer to the installation notes provided with these packages for more 
 
 *In the Duplication.tsv, Support = Proportion of expected species for which both copies of the duplicated gene are present.
 
-** Gene-B Phylo reads line per line from ":" to the end. All you have to do is write the path to each file in its corresponding line and after ":" and without spaces.
+** GeneBPhylo reads line per line from ":" to the end. All you have to do is write the path to each file in its corresponding line and after ":" and without spaces.
 
 The following files from OrthoFinder are used in this analysis:
 1) Gene_Duplication_Events -> Duplications.tsv
@@ -63,18 +63,18 @@ The following files from OrthoFinder are used in this analysis:
 For additional information about the OrthoFinder output files used in this analysis:
 [OrthoFinder](https://github.com/davidemms/OrthoFinder)
 
-3. If the Gene-B_Phylo_settings.txt file is already created and filled in the proper way the Gene-B Phylo analysis will be automatic.
+3. If the GeneBPhylo_settings.txt file is already created and filled in the proper way the GeneBPhylo analysis will be automatic.
 
 4. The programme will print the date and time and its progress. It does not take more than five minutes in a vertebrates dataset of 17 species.
 
 
-#To Run Gene-B Phylo on the Example Data type
+#To Run GeneBPhylo on the Example Data type
 
-`python3 Gene-B_Phylo1.1.py Gene-B_Phylo_settings.txt`
+`python3 GeneBPhylopy GeneBPhylo_settings.txt`
 
 
-## What Gene-B Phylo provides
-A Gene-B Phylo run produces a set of files describing an ordered by specie list of duplicated and de novo proteins. It also produces two Overall (de novo and duplication) files. In each one you can find a global summary of all the data extracted. 
+## What GeneBPhylo provides
+A GeneBPhylo run produces a set of files describing an ordered by specie list of duplicated and de novo proteins. It also produces two Overall (de novo and duplication) files. In each one you can find a global summary of all the data extracted. 
 
 
 ### Results Files
