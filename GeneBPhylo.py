@@ -6,6 +6,9 @@
 ###############################################################
 
 #IMPORTING PACKAGES
+import warnings
+# Filter warnings that appear when importing ete3 in python version > 3.7.
+warnings.filterwarnings("ignore")
 import csv
 import glob
 import pandas as pd
@@ -17,6 +20,10 @@ import os.path as path
 import sys
 from datetime import datetime
 from datetime import date
+
+
+# Filter warnings that appear when importing ete3 in python version > 3.7.
+warnings.filterwarnings("ignore")
 
 #FUNCTIONS
 #With this function I am trying to get rid of all those duplicated genes in a Clade. It also renames the gene names in orden to have them all in the same format.
@@ -90,12 +97,12 @@ if (len(sys.argv) != 2) or (sys.argv[1] == '-h'):
     print('Date-Output_Duplications_Overall.tsv, Date-Output_Duplication_Analysis.tsv, Date-Output_De_novo_Overall.tsv, Date-Output_De_novo_gene_Analysis.tsv')
     print('------------------------------------------------------------------------------')
     print('If you have any other questions about how the programme work please read the README.md')
-    
-    
-else:    
+
+
+else:
     ### First we need to get the information from a "Settings_File". There we have all the paths of all the files we are going to need.
     print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Starting ', 'GeneBPhylo')
-    print('Cheking required GeneBPhylo_settings.txt file exists') 
+    print('Cheking required GeneBPhylo_settings.txt file exists')
     File = sys.argv[1]
     File_paths = []
     if path.isfile(File) == True:
@@ -127,14 +134,14 @@ else:
             if i >= len(Specie_Name):
                 Added += Reference_Specie[i]
 
-        print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Running Duplication Analysis')  
-        
+        print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Running Duplication Analysis')
+
 #-----------------------------------------------------------------------------------------------#
 #DUPLICATIONS
 #-----------------------------------------------------------------------------------------------#
         #DataFrame showing all the duplications provided by OrthoFinder.
         DUPLICATIONS_DF = pd.read_csv(Duplications_File, delimiter = "\t", header=0, low_memory=False)
-        
+
         #We are going to get the clades we are interested in (related to the reference specie) directly from the Species_Tree
         S_tree = Phylo.read(Species_Tree, "newick")
 
@@ -157,7 +164,7 @@ else:
                 Subtree = get_subtree(Reference_Specie, Subtree)[1]
         Clades=list(reversed(Clades))
 
-        #It is useful though to have all the species names in just one list:        
+        #It is useful though to have all the species names in just one list:
         Clades_Only = []
         for element in Clades:
             if len(element) == 1:
@@ -216,25 +223,25 @@ else:
                 elif j < i:
                     continue
                 else:
-                    for element in All_Copies_dic.get(Tree_Path[i]).get(Tree_Path[j]):  
+                    for element in All_Copies_dic.get(Tree_Path[i]).get(Tree_Path[j]):
                         if element in Duplications_by_Clade_dic.get(Tree_Path[j]):
                             Duplications_by_Clade_dic.get(Tree_Path[j]).remove(element)
 
 
-        #Here we are getting the duplication events in each node. 
+        #Here we are getting the duplication events in each node.
         Duplication_events = []
         for i in range(0,len(Tree_Path)):
             table = DUPLICATIONS_DF[(DUPLICATIONS_DF['Species Tree Node'] == Tree_Path[i]) & (DUPLICATIONS_DF['Support'] >= Support)]
             Duplication_events.append(len(table))
 
         #It is important to be certain about the duplication events of the reference specie, that is why we are calculating that number in a diferent way:
-        Reference_Specie_DF = DUPLICATIONS_DF[(DUPLICATIONS_DF['Species Tree Node'] == Reference_Specie) & (DUPLICATIONS_DF['Support'] >= Support)] 
+        Reference_Specie_DF = DUPLICATIONS_DF[(DUPLICATIONS_DF['Species Tree Node'] == Reference_Specie) & (DUPLICATIONS_DF['Support'] >= Support)]
 
         Orthogroups_copies = []
         for Orthogroup in Reference_Specie_DF['Orthogroup']:
             Orthogroups_copies.append(Orthogroup)
 
-        Orthogroups = []    
+        Orthogroups = []
         for Orthogroup in Orthogroups_copies:
             if Orthogroup not in Orthogroups:
                 Orthogroups.append(Orthogroup)
@@ -245,7 +252,7 @@ else:
             ORTHOGROUP_DF = Reference_Specie_DF[(Reference_Specie_DF['Orthogroup'] == Orthogroup)]
             for i in range(0,len(ORTHOGROUP_DF)):
                 Genes_Orthogroup += ((ORTHOGROUP_DF.iloc[i]['Genes 1'].replace(' ','') + ',' + ORTHOGROUP_DF.iloc[i]['Genes 2'].replace(' ','')).split(','))
-            Total_genes_Orthogroup.append(Genes_Orthogroup) 
+            Total_genes_Orthogroup.append(Genes_Orthogroup)
 
         Non_duplicated_genes_Orthogroup = []
         for element in Total_genes_Orthogroup:
@@ -253,8 +260,8 @@ else:
 
         Duplication_Events_Ref_Spe = 0
         for element in Non_duplicated_genes_Orthogroup:
-            Duplication_Events_Ref_Spe += (len(element)-1)        
-       
+            Duplication_Events_Ref_Spe += (len(element)-1)
+
 
         #In order to normalize the duplication events we need to now the branch length of each node.
         Branch_Length = {}
@@ -284,7 +291,7 @@ else:
         writer.writerow(['Node','Specie','Duplications', 'Dupl_Events', 'Branch_length', 'Normalized_events'])
         for key, value in Duplications_by_Clade_dic.items():
             if Specie_Name in key.replace(Added, ''):
-                writer.writerow([key.replace(Added, ''), list(Clade_Path.keys())[counter], len(value),Duplication_Events_Ref_Spe, Branch_Length.get(key),(Duplication_Events_Ref_Spe)/(Branch_Length.get(key)*1000)])  
+                writer.writerow([key.replace(Added, ''), list(Clade_Path.keys())[counter], len(value),Duplication_Events_Ref_Spe, Branch_Length.get(key),(Duplication_Events_Ref_Spe)/(Branch_Length.get(key)*1000)])
             if key.replace(Added, '') not in Branch_Length.keys() and Specie_Name not in key.replace(Added, ''):
                 writer.writerow([key.replace(Added, ''), list(Clade_Path.keys())[counter],len(value),Duplication_events[counter],0,0])
             elif Specie_Name not in key:
@@ -301,12 +308,12 @@ else:
 
 
 
-        
+
         print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Done duplicated genes')
-        
+
         print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Running De novo Analysis')
-        
-###################################################################################################        
+
+###################################################################################################
 #------------------------------------------------------------------------------------------------------------#
 #DE NOVO
 #------------------------------------------------------------------------------------------------------------#
@@ -318,7 +325,7 @@ else:
             data = pd.read_csv(file, sep = '\t')
             Orthologues_Tables.append(data)
 
-        #Here we are obtaining all the orthologues in the dataframe and saving them in lists.       
+        #Here we are obtaining all the orthologues in the dataframe and saving them in lists.
         Orthologues = []
         for table in Orthologues_Tables:
             Group_genes=[]
@@ -357,7 +364,7 @@ else:
             if genes not in Orthologues_ordered_list:
                 ReferenceSpecie_de_novo.append(genes)
 
-        #Once the reference specie is done we have to sort de novo genes by specie.   
+        #Once the reference specie is done we have to sort de novo genes by specie.
         nonExclusive_de_novo = []
         counter = 0
         for i in range(0,len(Clades_Only)):
@@ -366,7 +373,7 @@ else:
             for gene in Species_Genes.get(Clades_Only[i]):
                 if gene not in Orthologues_ordered_list[counter:]:
                     Species_de_novo.append(gene)
-            nonExclusive_de_novo.append(Species_de_novo) 
+            nonExclusive_de_novo.append(Species_de_novo)
 
         De_novo_genes = {}
         De_novo_genes[Specie_Name] = ReferenceSpecie_de_novo
@@ -399,7 +406,7 @@ else:
         for element in De_novo_gene_information:
             De_novo_gene_information[element].append(Clade_Path[De_novo_gene_information[element][1]])
 
-        #In order to obtain the number of 'de novo' events we are going to count the number of Orthogroups    
+        #In order to obtain the number of 'de novo' events we are going to count the number of Orthogroups
         Species_Path = list(reversed(Species_Path))
         Species_Path.append(Specie_Name)
         Species_Path = list(reversed(Species_Path))
@@ -413,8 +420,8 @@ else:
                         Orthogroup.append(De_novo_gene_information[gene][0])
             count_Orthogroups.append(len(Orthogroup))
 
-###################################################################################################           
-        #As an output we are going to get two files: one showing all "de novo" proteins and their information and another showing the sum up of this information. 
+###################################################################################################
+        #As an output we are going to get two files: one showing all "de novo" proteins and their information and another showing the sum up of this information.
         #Creating a tsv file to save all the duplications of each node
         De_novo_file = open(str(date.today()) + '-' + Output + "_De_novo_Analysis.tsv", "w")
 
@@ -424,7 +431,7 @@ else:
             writer.writerow([key, value[0], value[1], value[2]])
 
         De_novo_file.close()
-        
+
 ###################################################################################################
 
         #File containing the overall 'de novo' information
@@ -436,10 +443,10 @@ else:
         i = 0
         for specie in Clade_Path:
             #El counter te da el número de genes de novo
-            counter = 0 
+            counter = 0
             for element in De_novo_gene_information:
                 if De_novo_gene_information[element][1] == specie:
-                    counter += 1  
+                    counter += 1
             if Specie_Name in Species_Path[i]:
                 writer.writerow([specie,specie,counter,count_Orthogroups[i],Branch_Length.get(Clade_Path.get(Species_Path[i]) + Added), count_Orthogroups[i]/(Branch_Length.get(Clade_Path.get(Species_Path[i]) + Added)*1000)])
             if Branch_Length.get(Clade_Path.get(Species_Path[i])) is None and i != 0:
@@ -447,11 +454,11 @@ else:
             elif Branch_Length.get(Clade_Path.get(Species_Path[i])) is not None:
                 writer.writerow([Tree_Path[i-1],specie,counter,count_Orthogroups[i],Branch_Length.get(Clade_Path.get(Species_Path[i])),count_Orthogroups[i]/(Branch_Length.get(Clade_Path.get(Species_Path[i]))*1000)])
             i += 1
-        De_novo_Overall.close()    
+        De_novo_Overall.close()
 
         print('Analysis done, new file: ', str(date.today()) + '-' + Output + "_De_novo_Analysis.tsv")
         print('Analysis done, new file: ', str(date.today()) + '-' + Output + "_De_novo_Overall.tsv")
-        
+
 ###################################################################################################
 
         print(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), ' : Done de novo genes')
@@ -460,7 +467,7 @@ else:
 
     else:
         Configurations = ['If you are not sure about how to use this settings.txt file: please read the README.md','Specie_Name:','Reference_Specie:','OrthoFinder_path:','Reference_Specie_fasta_path:','Output:','Support:']
-        
+
         with open ('Gene-B_Phylo_settings.txt','w') as file:
             file.writelines("%s\n" % i for i in Configurations)
         print('Settings file was not found')
