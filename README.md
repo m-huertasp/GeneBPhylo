@@ -59,7 +59,8 @@ The following files from OrthoFinder are used in this analysis:
 6) Species_Tree -> Species_Tree_node_labels.txt
 7) Reference_Specie.fa (Reference Species proteins)
 
-- Additional Information
+- **Additional Information**
+
 For additional information about the OrthoFinder output files used in this analysis:
 [OrthoFinder](https://github.com/davidemms/OrthoFinder)
 
