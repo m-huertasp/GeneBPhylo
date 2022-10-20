@@ -45,10 +45,12 @@ Users can refer to the installation notes provided with these packages for more 
 - **Output** -> You can name the output files in order to now the information within them. In a section below you can see how the output files are named using this.
 
 - **Support** -> You will accept those duplication events above this number
+ 
 
 *In the Duplication.tsv, Support = Proportion of expected species for which both copies of the duplicated gene are present.
 
 ** GeneBPhylo reads line per line from ":" to the end. All you have to do is write the path to each file in its corresponding line and after ":" and without spaces.
+
 
 The following files from OrthoFinder are used in this analysis:
 1) Gene_Duplication_Events -> Duplications.tsv
@@ -58,8 +60,6 @@ The following files from OrthoFinder are used in this analysis:
 5) Species_Tree -> Species_Tree_rooted.txt
 6) Species_Tree -> Species_Tree_node_labels.txt
 7) Reference_Specie.fa (Reference Species proteins)
-
-- **Additional Information**
 
 For additional information about the OrthoFinder output files used in this analysis:
 [OrthoFinder](https://github.com/davidemms/OrthoFinder)
