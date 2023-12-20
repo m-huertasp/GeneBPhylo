@@ -28,18 +28,26 @@ warnings.filterwarnings("ignore")
 #FUNCTIONS
 #With this function I am trying to get rid of all those duplicated genes in a Clade. It also renames the gene names in orden to have them all in the same format.
 def extract_duplication_events (Clade_duplication_table):
+
+    Clade_duplication_table_noNans = Clade_duplication_table[Clade_duplication_table["Genes 2"].notnull()]
+    Clade_duplication_table_Nans = Clade_duplication_table[Clade_duplication_table["Genes 2"].isnull()]
     Total_dupl_genes = []
     Genes_1 = []
+    Genes_1Nans = []
     Genes_2 = []
-    for gene in Clade_duplication_table['Genes 1']:
+    for gene in Clade_duplication_table_noNans['Genes 1']:
         Genes_1.append(gene)
-    for gene in Clade_duplication_table['Genes 2']:
+    for gene in Clade_duplication_table_Nans['Genes 1']:
+        Genes_1Nans.append(gene)
+    for gene in Clade_duplication_table_noNans['Genes 2']:
         Genes_2.append(gene)
     Genes_1 = ','.join(Genes_1)
     Genes_1 = Genes_1.replace(' ','')
+    Genes_1Nans = ','.join(Genes_1Nans)
+    Genes_1Nans = Genes_1Nans.replace(' ', '')
     Genes_2 = ','.join(Genes_2)
     Genes_2 = Genes_2.replace(' ','')
-    Unique_Genes = Genes_1.split(',') + Genes_2.split(',')
+    Unique_Genes = Genes_1.split(',') + Genes_1Nans.split(',') + Genes_2.split(',')
     for gene in Unique_Genes:
         if Reference_Specie in gene:
             gene = gene.replace(Reference_Specie, '')
@@ -79,6 +87,12 @@ def orthogroups_todict (DataFrame, Species):
             Gene_Orthogroup[gene] = element
     return Gene_Orthogroup
 
+# Custom
+# File_paths = ["Nothing","s_Andah", "s_Andah_proteins",
+#               "/datasets/CMonta/Git/GeneBPhylo/Issue",
+#               "./data/s_Andah_proteins.fa",
+#               "Andah_example",
+#               "0.5"]
 
 print('GeneBPhylo')
 if (len(sys.argv) != 2) or (sys.argv[1] == '-h'):
@@ -250,8 +264,13 @@ else:
         for Orthogroup in Orthogroups:
             Genes_Orthogroup = []
             ORTHOGROUP_DF = Reference_Specie_DF[(Reference_Specie_DF['Orthogroup'] == Orthogroup)]
-            for i in range(0,len(ORTHOGROUP_DF)):
-                Genes_Orthogroup += ((ORTHOGROUP_DF.iloc[i]['Genes 1'].replace(' ','') + ',' + ORTHOGROUP_DF.iloc[i]['Genes 2'].replace(' ','')).split(','))
+            ORTHOGROUP_DF_Nans = ORTHOGROUP_DF[ORTHOGROUP_DF["Genes 2"].isnull()]
+            ORTHOGROUP_DF_noNans = ORTHOGROUP_DF[ORTHOGROUP_DF["Genes 2"].notnull()]
+            for i in range(0, len(ORTHOGROUP_DF_noNans)):
+                Genes_Orthogroup += ((ORTHOGROUP_DF_noNans.iloc[i]['Genes 1'].replace(' ', '') + ',' +
+                                      ORTHOGROUP_DF_noNans.iloc[i]['Genes 2'].replace(' ', '')).split(','))
+            for i in range(0, len(ORTHOGROUP_DF_Nans)):
+                Genes_Orthogroup += ((ORTHOGROUP_DF.iloc[i]['Genes 1'].replace(' ', '')).split(','))
             Total_genes_Orthogroup.append(Genes_Orthogroup)
 
         Non_duplicated_genes_Orthogroup = []
