@@ -1,0 +1,9 @@
+Node	Specie	De_novo_genes	De_novo_events	Branch_length	Normalized_events	MYA
+s_cerevisiae	s_cerevisiae	197	180	0.0426649	4.21892468985044	NA
+N9	s_paradoxus	9	8	0.0248562	0.321851288612097	NA
+N8	s_mikatae	5	5	0.0261085	0.191508512553383	NA
+N7	s_kudriavzevii	23	16	0.0249203	0.642046845342953	16.2
+N5	s_bayanus	97	92	0.346233	0.265717017153189	66
+N3	n_castellii	69	35	0.168408	0.207828606717021	112
+N1	l_waltii_v3_group	1493	1387	1.52227	0.91113928540929	529
+N0	schizo_pombe	2877	2744	0	0	
